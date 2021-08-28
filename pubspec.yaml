@@ -30,7 +30,6 @@ dependencies:
   cupertino_icons: ^1.0.0
   flutter_audio_recorder: ^0.5.2
   audio_video_progress_bar: ^0.1.0
-  flutter_visualizers: ^0.0.2
   rxdart: ^0.25.0
   vibrate: ^0.0.4
   path_provider:

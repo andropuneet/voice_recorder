@@ -1,10 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:io' as io;
-import 'dart:async';
-
-import 'package:flutter_audio_recorder/flutter_audio_recorder.dart';
-import 'package:audioplayers/audioplayers.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:qoohoo_audio_recorder/ui/audio_chat_screen.dart';
 import 'package:qoohoo_audio_recorder/utils/color_hex.dart';
 
