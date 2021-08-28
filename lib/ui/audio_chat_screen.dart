@@ -26,8 +26,6 @@ class _AudioChatScreenState extends State<AudioChatScreen>
   FlutterAudioRecorder _recorder;
   Recording _recording;
   List<Recording> recordingList = List();
-  Timer _t;
-  Widget _buttonIcon = Icon(Icons.do_not_disturb_on);
   double _scale = 0.0;
   AnimationController _controller;
   RecorderBloc recorderBloc;
@@ -100,57 +98,9 @@ class _AudioChatScreenState extends State<AudioChatScreen>
 
   Future _stopRecording() async {
     var result = await _recorder.stop();
-    // _t.cancel();
     _recording = result;
     recorderBloc.addRecording(_recording);
   }
-
-  // void _opt() async {
-  //   switch (_recording.status) {
-  //     case RecordingStatus.Initialized:
-  //       {
-  //         await _startRecording();
-  //         break;
-  //       }
-  //     case RecordingStatus.Recording:
-  //       {
-  //         await _stopRecording();
-  //         break;
-  //       }
-  //     case RecordingStatus.Stopped:
-  //       {
-  //         await _prepare();
-  //         break;
-  //       }
-  //
-  //     default:
-  //       break;
-  //   }
-  //
-  //   // 刷新按钮
-  //   setState(() {
-  //     _buttonIcon = _playerIcon(_recording.status);
-  //   });
-  // }
-  //
-  // Widget _playerIcon(RecordingStatus status) {
-  //   switch (status) {
-  //     case RecordingStatus.Initialized:
-  //       {
-  //         return Icon(Icons.fiber_manual_record);
-  //       }
-  //     case RecordingStatus.Recording:
-  //       {
-  //         return Icon(Icons.stop);
-  //       }
-  //     case RecordingStatus.Stopped:
-  //       {
-  //         return Icon(Icons.replay);
-  //       }
-  //     default:
-  //       return Icon(Icons.do_not_disturb_on);
-  //   }
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -171,7 +121,10 @@ class _AudioChatScreenState extends State<AudioChatScreen>
               initialItemCount: recordingList.length,
               padding: EdgeInsets.only(bottom: 20),
               itemBuilder: (context, index, animation) {
-                return AudioListItem(recordingList: recordingList,index: index,animation:animation);
+                return AudioListItem(
+                    recordingList: recordingList,
+                    index: index,
+                    animation: animation);
               },
               shrinkWrap: true,
               physics: BouncingScrollPhysics(),

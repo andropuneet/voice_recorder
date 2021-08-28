@@ -13,6 +13,7 @@ class AudioBar {
   final buttonNotifier = ValueNotifier<ButtonState>(ButtonState.paused);
 
   AudioPlayer _audioPlayer;
+
   AudioBar() {
     _init();
   }
@@ -33,7 +34,6 @@ class AudioBar {
         _audioPlayer.pause();
       }
     });
-
     // listen for changes in play position
     _audioPlayer.onAudioPositionChanged.listen((position) {
       final oldState = progressNotifier.value;
@@ -43,16 +43,6 @@ class AudioBar {
         total: oldState.total,
       );
     });
-
-    // // listen for changes in the buffered position
-    // _audioPlayer.bufferedPositionStream.listen((bufferedPosition) {
-    //   final oldState = progressNotifier.value;
-    //   progressNotifier.value = ProgressBarState(
-    //     current: oldState.current,
-    //     buffered: bufferedPosition,
-    //     total: oldState.total,
-    //   );
-    // });
 
     // listen for changes in the total audio duration
     _audioPlayer.onDurationChanged.listen((totalDuration) {
@@ -88,6 +78,7 @@ class ProgressBarState {
     @required this.buffered,
     @required this.total,
   });
+
   final Duration current;
   final Duration buffered;
   final Duration total;
